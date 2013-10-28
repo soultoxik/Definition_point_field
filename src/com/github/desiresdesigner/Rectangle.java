@@ -17,13 +17,13 @@ public class Rectangle extends Quadrant {
     public boolean contains(Mark p){
         switch (this.number){
             case 1:
-                return p.x < this.ox && p.y < this.oy;
+                return p.getX() < this.ox && p.getY() < this.oy;
             case 2:
-                return p.x > this.ox && p.y < this.oy;
+                return p.getX() > this.ox && p.getY() < this.oy;
             case 3:
-                return p.x > this.ox && p.y > this.oy;
+                return p.getX() > this.ox && p.getY() > this.oy;
             case 4:
-                return p.x < this.ox && p.y > this.oy;
+                return p.getX() < this.ox && p.getY() > this.oy;
             default:
                 return false;
         }

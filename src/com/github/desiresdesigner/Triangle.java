@@ -18,8 +18,8 @@ public class Triangle extends Quadrant{
 
     public boolean contains(Mark p){
         if (this.number < 3){
-            return p.y < (-1)*(this.oy/this.ox)*p.x + this.oy;
+            return p.getY() < (-1)*(this.oy/this.ox)*p.getX() + this.oy;
         }
-        return p.y > (-1)*(this.oy/this.ox)*p.x + this.oy;
+        return p.getY() > (-1)*(this.oy/this.ox)*p.getX() + this.oy;
     }
 }

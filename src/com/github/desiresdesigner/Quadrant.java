@@ -17,7 +17,7 @@ public class Quadrant {
     }
 
     public boolean contains(Mark p){
-        return p.x == 0 && p.y == 0;
+        return p.getX() == 0 && p.getY() == 0;
     }
 
     public double getOx(){

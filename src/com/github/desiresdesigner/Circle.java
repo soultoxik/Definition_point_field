@@ -21,6 +21,6 @@ public class Circle extends Quadrant {
     }
 
     public boolean contains(Mark p){
-        return Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2)) < this.r;
+        return Math.sqrt(Math.pow(p.getX(), 2) + Math.pow(p.getY(), 2)) < this.r;
     }
 }
