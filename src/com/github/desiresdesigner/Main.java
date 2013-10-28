@@ -20,10 +20,10 @@ public class Main {
         int r = 4;
         if (args.length != 0)
             r = Integer.parseInt(args[0]);
-        Figure f = new Figure(r);
+        Figure drawingKeeper = new Figure(r);
 
         for (Mark point : points){
-            if(f.contains(point)){
+            if(drawingKeeper.contains(point)){
                 System.out.println("Point (" + point.getX() + ", " + point.getY() + ") is in specified area");
             }
         }*/

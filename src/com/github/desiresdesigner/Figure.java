@@ -1,18 +1,23 @@
 package com.github.desiresdesigner;
 
+import java.awt.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author desiresdesigner, trionia
  * @since 10/15/13
  */
-public class Figure {
-    static Quadrant q1;
-    static Quadrant q2;
-    static Quadrant q3;
-    static Quadrant q4;
+public class Figure implements Drawable {
+    private final AbstractQuadrant q1;
+    private final AbstractQuadrant q2;
+    private final AbstractQuadrant q3;
+    private final AbstractQuadrant q4;
 
     public Figure(int R){
         this.q1 = new Triangle(R, R, 1);
-        this.q2 = new Quadrant(2);
+        this.q2 = new EmptyQuadrant(2);
         this.q3 = new Rectangle(-R, -R /2, 3);
         this.q4 = new Circle(R, 4);
     }
@@ -40,11 +45,22 @@ public class Figure {
         return false;
     }
 
+    Set<AbstractQuadrant> getQuadrants(){
+      return new HashSet<AbstractQuadrant>(Arrays.asList(q1, q2, q3, q4));
+    }
+
     Mark getUpperPoint(){
         return new Mark(0, 0);
     }
 
     Mark getNext(Mark m){
         return m;
+    }
+
+    @Override
+    public void draw(Graphics g, Mark center) {
+      for (Drawable drawable: getQuadrants()){
+        drawable.draw(g, center);
+      }
     }
 }

@@ -1,10 +1,12 @@
 package com.github.desiresdesigner;
 
+import java.awt.*;
+
 /**
  * @author desiresdesigner
  * @since 10/15/13
  */
-public class Circle extends Quadrant {
+public class Circle extends AbstractQuadrant {
     private double r; // радиус окружности
 
     public Circle(double r, int number){
@@ -20,7 +22,14 @@ public class Circle extends Quadrant {
         this.r = r;
     }
 
+    @Override
     public boolean contains(Mark p){
         return Math.sqrt(Math.pow(p.getX(), 2) + Math.pow(p.getY(), 2)) < this.r;
     }
+
+    @Override
+    public void draw(Graphics g, Mark center){
+
+    }
+
 }

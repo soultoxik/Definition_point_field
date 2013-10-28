@@ -1,18 +1,20 @@
 package com.github.desiresdesigner;
 
+import java.awt.*;
+
 /**
  * @author desiresdesigner
  * @since 10/15/13
  */
-public class Quadrant {
+public abstract class AbstractQuadrant implements Drawable {
     protected int number;
-    protected double ox = 0;//пересечение с ОХ
-    protected double oy = 0;//пересечение с ОY
+    protected double ox = 150;//пересечение с ОХ
+    protected double oy = 150;//пересечение с ОY
 
-    public Quadrant (){
+    public AbstractQuadrant(){
     }
 
-    public Quadrant (int n){
+    public AbstractQuadrant(int n){
         this.number = n;
     }
 

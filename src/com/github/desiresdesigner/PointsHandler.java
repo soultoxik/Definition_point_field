@@ -14,35 +14,49 @@ import javax.swing.*;
 
 
 class PointsHandler{
-    DrawingKeeper f;
+    private final DrawingKeeper drawingKeeper;
+    private final Figure figure;
 
-    PointsHandler(){
-        this.f = new DrawingKeeper();
+  PointsHandler() {
+        this.drawingKeeper = new DrawingKeeper();
+        this.drawingKeeper.setSize(300, 300);
+        figure = new Figure(50);
+        final FigureDrawer figureDrawer = new FigureDrawer(drawingKeeper, figure);
 
-        this.f.addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent e)
-            {
-                System.exit(0);
-            }
-        });
-
-        this.f.setSize(300, 300);
-        this.f.add(new FigureDrawer());
-        this.f.setVisible(true);
+        this.drawingKeeper.add(figureDrawer);
+        this.drawingKeeper.setVisible(true);
     }
 }
 
 class DrawingKeeper extends JFrame{
     DrawingKeeper(){
         super("Definition Point In Field");
+      addWindowListener(new WindowAdapter() {
+        public void windowClosing(WindowEvent e)
+        {
+          System.exit(0);
+        }
+      });
     }
 }
 
 class FigureDrawer extends Canvas{
 
-    public void paint(Graphics g){
-        g.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
-        g.drawLine(getWidth()/2, 0, getWidth()/2, getHeight());
+  private DrawingKeeper drawingKeeper;
+  private final Figure figure;
+
+  public FigureDrawer(DrawingKeeper drawingKeeper, Figure figure) {
+    this.drawingKeeper = drawingKeeper;
+    this.figure = figure;
+  }
+
+  @Override
+    public void paint(Graphics g) {
+    final int centerHeight = getHeight() / 2;
+    final int centerWidth = getWidth() / 2;
+    g.drawLine(0, centerHeight, getWidth(), centerHeight);
+    g.drawLine(centerWidth, 0, centerWidth, getHeight());
+    final Mark center = new Mark(centerHeight, centerWidth);
+    figure.draw(g, center);
     }
 }

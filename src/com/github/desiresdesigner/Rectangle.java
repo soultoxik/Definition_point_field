@@ -1,10 +1,12 @@
 package com.github.desiresdesigner;
 
+import java.awt.*;
+
 /**
  * @author desiresdesigner
  * @since 10/15/13
  */
-public class Rectangle extends Quadrant {
+public class Rectangle extends AbstractQuadrant {
     //private double ox; //пересечение с ОХ
     //private double oy; //пересечение с ОУ
 
@@ -29,4 +31,10 @@ public class Rectangle extends Quadrant {
         }
 
     }
+
+
+  @Override
+  public void draw(Graphics g, Mark center){
+
+  }
 }
