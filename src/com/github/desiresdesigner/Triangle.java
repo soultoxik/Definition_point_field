@@ -25,8 +25,10 @@ public class Triangle extends AbstractQuadrant {
         return p.getY() > (-1)*(this.oy/this.ox)*p.getX() + this.oy;
     }
 
-  @Override
-  public void draw(Graphics g, Mark center) {
-    g.drawLine((int) ox, 0, 0, (int) oy);
-  }
+    @Override
+    public void draw(Graphics g, Mark center) {
+        int[] xPoints = {(int)(center.getX()), (int)(center.getX() + ox), (int)(center.getX())};
+        int[] yPoints = {(int)(center.getY()), (int)(center.getY()), (int)(center.getY() - oy)};
+        g.fillPolygon(xPoints, yPoints, 3);
+    }
 }

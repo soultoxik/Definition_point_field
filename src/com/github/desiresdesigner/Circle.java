@@ -29,7 +29,16 @@ public class Circle extends AbstractQuadrant {
 
     @Override
     public void draw(Graphics g, Mark center){
-
+        int startAngle = 0;
+        int endAngle = 90;
+        if (this.number == 2){
+            startAngle = 90;
+        } else if (this.number == 3){
+            startAngle = 180;
+        } else if (this.number == 4){
+            endAngle = -90;
+        }
+        g.fillArc((int)(center.getX() - r), (int)(center.getY() - r), (int)(2*r), (int) (2*r), startAngle, endAngle);
     }
 
 }

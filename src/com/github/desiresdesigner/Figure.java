@@ -16,10 +16,14 @@ public class Figure implements Drawable {
     private final AbstractQuadrant q4;
 
     public Figure(int R){
-        this.q1 = new Triangle(R, R, 1);
+        /*this.q1 = new Triangle(R, R, 3);
         this.q2 = new EmptyQuadrant(2);
         this.q3 = new Rectangle(-R, -R /2, 3);
-        this.q4 = new Circle(R, 4);
+        this.q4 = new Circle(R, 4);*/
+        this.q1 = new Rectangle(R / 2, R, 1);
+        this.q2 = new Triangle(-R / 2, -R / 2, 2);
+        this.q3 = new EmptyQuadrant(3);
+        this.q4 = new Circle(R / 2, 4);
     }
 
     public boolean contains(Mark p){
@@ -46,21 +50,16 @@ public class Figure implements Drawable {
     }
 
     Set<AbstractQuadrant> getQuadrants(){
-      return new HashSet<AbstractQuadrant>(Arrays.asList(q1, q2, q3, q4));
-    }
-
-    Mark getUpperPoint(){
-        return new Mark(0, 0);
-    }
-
-    Mark getNext(Mark m){
-        return m;
+        return new HashSet<AbstractQuadrant>(Arrays.asList(q1, q2, q3, q4));
     }
 
     @Override
     public void draw(Graphics g, Mark center) {
-      for (Drawable drawable: getQuadrants()){
-        drawable.draw(g, center);
-      }
+        for (Drawable drawable: getQuadrants()){
+            drawable.draw(g, center);
+        }
+        /*for (AbstractQuadrant AbsQua: getQuadrants()){
+            AbsQua.draw(g, center);
+        }*/
     }
 }
