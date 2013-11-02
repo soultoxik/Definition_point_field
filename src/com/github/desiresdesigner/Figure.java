@@ -16,12 +16,12 @@ public class Figure implements Drawable {
     private final AbstractQuadrant q4;
 
     public Figure(int R){
-        /*this.q1 = new Triangle(R, R, 3);
+        /*this.q1 = new Triangle(R, R, 1);
         this.q2 = new EmptyQuadrant(2);
         this.q3 = new Rectangle(-R, -R /2, 3);
         this.q4 = new Circle(R, 4);*/
         this.q1 = new Rectangle(R / 2, R, 1);
-        this.q2 = new Triangle(-R / 2, -R / 2, 2);
+        this.q2 = new Triangle(-R / 2, R / 2, 2);
         this.q3 = new EmptyQuadrant(3);
         this.q4 = new Circle(R / 2, 4);
     }
@@ -29,7 +29,7 @@ public class Figure implements Drawable {
     public boolean contains(Mark p){
         if (p.getY() == 0){
             double min = q2.getOx() > q3.getOx() ? q2.getOx() : q3.getOx();
-            double max = q1.getOx() < q4.getOx() ? q1.getOx() : q4.getOx();
+            double max = q1.getOx() < q4.getOx() ? q4.getOx() : q1.getOx();
             return p.getX() > min && p.getX() < max;
         }
         if (p.getX() == 0){

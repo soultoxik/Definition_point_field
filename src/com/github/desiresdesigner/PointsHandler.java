@@ -103,10 +103,10 @@ class DrawingKeeper extends JFrame implements ActionListener{
     private void prepareControlComponents(){
         this.xComboBox = new JComboBox();
 
-        String[] yCoord = new String[this.canvasSize/50];
-        for (int i = 0; i < this.canvasSize/50; i++) {
-            this.xComboBox.addItem (i*50 - this.canvasSize / 2);
-            yCoord[i] = String.valueOf(i*50 - this.canvasSize / 2);
+        String[] yCoord = new String[this.canvasSize];
+        for (int i = 0; i < this.canvasSize; i++) {
+            this.xComboBox.addItem (i - this.canvasSize / 2);
+            yCoord[i] = String.valueOf(i - this.canvasSize / 2);
         }
         SpinnerModel ySpinnerModel = new SpinnerListModel(yCoord);
         this.ySpinner = new JSpinner(ySpinnerModel);
@@ -117,8 +117,14 @@ class DrawingKeeper extends JFrame implements ActionListener{
         this.setDataButton = new JButton("Set Data");
     }
 
-    private void setMark(int x, int y){
-        this.figureDrawer.drawPoint(x, y, "Red");
+    private void setMark(Mark p){
+        if (this.figure.contains(p)){
+            System.out.println(p.getX() + " - " + p.getY() + " - contains");
+            this.figureDrawer.drawPoint(p, Color.GREEN);
+            return;
+        }
+        System.out.println(p.getX() + " - " + p.getY() + " - NOT contains");
+        this.figureDrawer.drawPoint(p, Color.RED);
     }
 
     public void actionPerformed(ActionEvent e){
@@ -127,7 +133,7 @@ class DrawingKeeper extends JFrame implements ActionListener{
             int x = ((Integer)this.xComboBox.getSelectedItem()).intValue();
             int y = Integer.parseInt((String)this.ySpinner.getValue());
             System.out.println("Listener thinks, that: " + x + " - " + y);
-            this.setMark(x, y);
+            this.setMark(new Mark(x, y));
             //this.infoXLabel.setText("x: 0");
         }
     }
@@ -188,26 +194,25 @@ class FigureDrawer extends Canvas{
     private final int size;
 
     private Mark dotCoords;
-    private String mark_color;
+    private Color mark_color;
 
     public FigureDrawer(int size, Figure figure) {
         this.size = size;
         this.figure = figure;
     }
 
-    public void drawPoint(int x, int y, String color){
-        this.dotCoords = new Mark(this.getWidth()/2 + x, this.getHeight()/2 - y);
+    public void drawPoint(Mark p, Color color){
+        this.dotCoords = new Mark(this.getWidth()/2 + p.getX(), this.getHeight()/2 - p.getY());
         System.out.println("Canvas thinks, that: " + this.dotCoords.getX() + " - " + this.dotCoords.getY());
         this.mark_color = color;
-        //this.remove
         this.repaint();
     }
 
     public void update(Graphics g){
-        g.setColor(Color.orange);
-        //this.remove
-        g.clearRect((int)this.dotCoords.getX() - 5, (int)this.dotCoords.getY() - 5, 10, 10);
-        g.fillOval((int)this.dotCoords.getX(), (int)this.dotCoords.getY(), 10, 10);
+        g.clearRect(0, 0, this.getWidth(), this.getHeight());
+        this.paint(g);
+        g.setColor(this.mark_color);
+        g.fillOval((int)this.dotCoords.getX() - 5, (int)this.dotCoords.getY() - 5, 10, 10);
     }
 
     @Override
