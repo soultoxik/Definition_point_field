@@ -10,16 +10,18 @@ import java.util.Set;
  * @since 10/15/13
  */
 public class Figure implements Drawable {
-    private final AbstractQuadrant q1;
-    private final AbstractQuadrant q2;
-    private final AbstractQuadrant q3;
-    private final AbstractQuadrant q4;
+    private AbstractQuadrant q1;
+    private AbstractQuadrant q2;
+    private AbstractQuadrant q3;
+    private AbstractQuadrant q4;
+    int R;
 
     public Figure(int R){
-        /*this.q1 = new Triangle(R, R, 1);
-        this.q2 = new EmptyQuadrant(2);
-        this.q3 = new Rectangle(-R, -R /2, 3);
-        this.q4 = new Circle(R, 4);*/
+        this.R = R;
+        setQuadrants();
+    }
+
+    void setQuadrants(){
         this.q1 = new Rectangle(R / 2, R, 1);
         this.q2 = new Triangle(-R / 2, R / 2, 2);
         this.q3 = new EmptyQuadrant(3);
@@ -51,6 +53,11 @@ public class Figure implements Drawable {
 
     Set<AbstractQuadrant> getQuadrants(){
         return new HashSet<AbstractQuadrant>(Arrays.asList(q1, q2, q3, q4));
+    }
+
+    void setR(int R){
+        this.R = R;
+        setQuadrants();
     }
 
     @Override
