@@ -5,6 +5,8 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -15,7 +17,7 @@ import java.awt.event.WindowEvent;
  * Time: 6:43 PM
  * To change this template use File | Settings | File Templates.
  */
-class DrawingKeeper extends JFrame implements ActionListener {
+class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener {
     private Figure figure;
     private FigureDrawer figureDrawer;
     private JPanel panel = new JPanel();
@@ -64,26 +66,8 @@ class DrawingKeeper extends JFrame implements ActionListener {
     }
 
     private void setHandlers(){
-
         this.setDataButton.addActionListener(this);
-
-        /*this.xComboBox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cb = (JComboBox)e.getSource();
-                int xVal = ((Integer)cb.getSelectedItem()).intValue();
-
-                System.out.println(xVal);
-            }
-        });
-
-        this.setDataButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                //this.xComboBox.getSelectedIndex();
-                //Mark point = new Mark(this)
-                System.out.println("You clicked the button");
-            }
-        });*/
+        //this.addMouseListener(this);
     }
 
     private void prepareControlComponents(){
@@ -110,11 +94,6 @@ class DrawingKeeper extends JFrame implements ActionListener {
         }
         Thread thread = new Thread(new PointCreationAnimator(figureDrawer, color, p, this.figure.R/7));
         thread.start();
-        /*if (this.figure.contains(p)){
-            this.figureDrawer.drawPoint(p, Color.GREEN);
-            return;
-        }
-        this.figureDrawer.drawPoint(p, Color.RED);*/
     }
 
     @Override
@@ -184,7 +163,33 @@ class DrawingKeeper extends JFrame implements ActionListener {
         this.menuPanel.add(infoPanel);
     }
 
-    public void addCanvas(Canvas canvas){
+    public void addCanvas(FigureDrawer canvas){
         this.panel.add(canvas, BorderLayout.CENTER);
+        canvas.setLabels(infoXLabel, infoYLabel);
     }
+    /*@Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("CLICK");
+        System.out.println(e.getX() + ", " + e.getY());
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("Welcome to Java Programming!");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }*/
 }
