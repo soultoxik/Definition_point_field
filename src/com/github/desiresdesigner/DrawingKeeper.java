@@ -104,15 +104,20 @@ class DrawingKeeper extends JFrame implements ActionListener {
     }
 
     private void setMark(Mark p){
+        Color color = Color.RED;
         if (this.figure.contains(p)){
-            System.out.println(p.getX() + " - " + p.getY() + " - contains");
+            color = Color.GREEN;
+        }
+        Thread thread = new Thread(new PointCreationAnimator(figureDrawer, color, p, this.figure.R/7));
+        thread.start();
+        /*if (this.figure.contains(p)){
             this.figureDrawer.drawPoint(p, Color.GREEN);
             return;
         }
-        System.out.println(p.getX() + " - " + p.getY() + " - NOT contains");
-        this.figureDrawer.drawPoint(p, Color.RED);
+        this.figureDrawer.drawPoint(p, Color.RED);*/
     }
 
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("Set Data"))
         {
