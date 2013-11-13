@@ -18,7 +18,6 @@ public class PointCreationAnimator implements Runnable {
         markColor = color;
         this.mark = mark;
         this.diameter = diameter > 10 ? diameter : 15;
-        //this.diameter = 50;
     }
 
     @Override
@@ -26,12 +25,11 @@ public class PointCreationAnimator implements Runnable {
         while (diameter > 9){
             figureDrawer.drawPoint(mark, markColor, diameter);
             diameter -= 1;
-            //diameter -= 5;
             try{
                 Thread.sleep((long)100);
             }
             catch(Exception e){
-                System.out.println("OLOLO");
+                System.out.println("Something wrong with Thread.sleep(), but don't worry");
             }
         }
     }

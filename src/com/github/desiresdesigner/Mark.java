@@ -4,6 +4,7 @@ package com.github.desiresdesigner;
  * @author desiresdesigner
  * @since 10/15/13
  */
+
 public class Mark {
     private final double x;
     private final double y;

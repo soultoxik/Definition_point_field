@@ -5,19 +5,15 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Created with IntelliJ IDEA.
- * User: desiresdesigner
- * Date: 11/11/13
- * Time: 6:43 PM
- * To change this template use File | Settings | File Templates.
+ * @author desiresdesigner
+ * @since 11/11/13
  */
-class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener {
+
+class DrawingKeeper extends JFrame implements ActionListener {
     private Figure figure;
     private FigureDrawer figureDrawer;
     private JPanel panel = new JPanel();
@@ -40,8 +36,7 @@ class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener
 
         this.canvasSize = canvasSize;
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e)
-            {
+            public void windowClosing(WindowEvent e){
                 System.exit(0);
             }
         });
@@ -67,7 +62,6 @@ class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener
 
     private void setHandlers(){
         this.setDataButton.addActionListener(this);
-        //this.addMouseListener(this);
     }
 
     private void prepareControlComponents(){
@@ -85,15 +79,6 @@ class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener
 
         RField.setText("RField");
         this.setDataButton = new JButton("Set Data");
-    }
-
-    private void setMark(Mark p){
-        Color color = Color.RED;
-        if (this.figure.contains(p)){
-            color = Color.GREEN;
-        }
-        Thread thread = new Thread(new PointCreationAnimator(figureDrawer, color, p, this.figure.R/7));
-        thread.start();
     }
 
     @Override
@@ -114,7 +99,7 @@ class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener
             int y = Integer.parseInt((String)this.ySpinner.getValue());
             infoXLabel.setText("x: " + String.valueOf(x));
             infoYLabel.setText("y: " + String.valueOf(y));
-            this.setMark(new Mark(x, y));
+            this.figureDrawer.checkPoint(new Mark(x, y));
         }
     }
 
@@ -167,29 +152,4 @@ class DrawingKeeper extends JFrame implements ActionListener { //, MouseListener
         this.panel.add(canvas, BorderLayout.CENTER);
         canvas.setLabels(infoXLabel, infoYLabel);
     }
-    /*@Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("CLICK");
-        System.out.println(e.getX() + ", " + e.getY());
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        System.out.println("Welcome to Java Programming!");
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }*/
 }

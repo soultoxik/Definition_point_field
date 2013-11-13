@@ -9,6 +9,7 @@ import java.util.Set;
  * @author desiresdesigner, trionia
  * @since 10/15/13
  */
+
 public class Figure implements Drawable {
     private AbstractQuadrant q1;
     private AbstractQuadrant q2;
@@ -65,8 +66,5 @@ public class Figure implements Drawable {
         for (Drawable drawable: getQuadrants()){
             drawable.draw(g, center);
         }
-        /*for (AbstractQuadrant AbsQua: getQuadrants()){
-            AbsQua.draw(g, center);
-        }*/
     }
 }

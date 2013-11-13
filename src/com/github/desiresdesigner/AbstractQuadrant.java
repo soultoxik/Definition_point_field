@@ -1,15 +1,13 @@
 package com.github.desiresdesigner;
 
-import java.awt.*;
-
 /**
  * @author desiresdesigner
  * @since 10/15/13
  */
+
 public abstract class AbstractQuadrant implements Drawable {
     protected int number;
-    //protected double ox = 150;//пересечение с ОХ
-    //protected double oy = 150;//пересечение с ОY
+
     protected double ox = 0;//пересечение с ОХ
     protected double oy = 0;//пересечение с ОY
 

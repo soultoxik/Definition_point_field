@@ -6,12 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Created with IntelliJ IDEA.
- * User: desiresdesigner
- * Date: 11/11/13
- * Time: 6:43 PM
- * To change this template use File | Settings | File Templates.
+ * @author desiresdesigner
+ * @since 11/11/13
  */
+
 class FigureDrawer extends Canvas implements MouseListener {
 
     private final Figure figure;
@@ -108,6 +106,10 @@ class FigureDrawer extends Canvas implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         Mark p = new Mark(e.getX() - getWidth()/2, getHeight()/2 - e.getY());
+        this.checkPoint(p);
+    }
+
+    public void checkPoint(Mark p){
         Color color = Color.RED;
         if (this.figure.contains(p)){
             color = Color.GREEN;

@@ -6,6 +6,7 @@ import java.awt.*;
  * @author desiresdesigner
  * @since 10/15/13
  */
+
 public class Circle extends AbstractQuadrant {
     private double r; // радиус окружности
 
@@ -40,5 +41,4 @@ public class Circle extends AbstractQuadrant {
         }
         g.fillArc((int)(center.getX() - r), (int)(center.getY() - r), (int)(2*r), (int) (2*r), startAngle, endAngle);
     }
-
 }

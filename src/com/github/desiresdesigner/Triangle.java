@@ -6,16 +6,13 @@ import java.awt.*;
  * @author desiresdesigner
  * @since 10/15/13
  */
-public class Triangle extends AbstractQuadrant {
-    //private double ox; //пересечение с ОХ
-    //private double oy; //пересечение с ОУ
 
+public class Triangle extends AbstractQuadrant {
     public Triangle(double x, double y, int number){
         this.number = number;
 
         this.ox = x;
         this.oy = y;
-
     }
 
     public boolean contains(Mark p){

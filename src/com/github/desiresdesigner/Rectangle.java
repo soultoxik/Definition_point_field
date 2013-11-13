@@ -6,10 +6,8 @@ import java.awt.*;
  * @author desiresdesigner
  * @since 10/15/13
  */
-public class Rectangle extends AbstractQuadrant {
-    //private double ox; //пересечение с ОХ
-    //private double oy; //пересечение с ОУ
 
+public class Rectangle extends AbstractQuadrant {
     public Rectangle(double x, double y, int number){
         this.ox = x;
         this.oy = y;
@@ -31,7 +29,6 @@ public class Rectangle extends AbstractQuadrant {
         }
 
     }
-
 
   @Override
   public void draw(Graphics g, Mark center){
