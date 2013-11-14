@@ -7,6 +7,6 @@ package com.github.desiresdesigner;
 
 public class Main {
     public static void main(String[] args) {
-        FrameContainer drawer = new FrameContainer();
+        new FrameContainer();
     }
 }

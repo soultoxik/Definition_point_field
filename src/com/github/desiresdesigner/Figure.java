@@ -16,17 +16,19 @@ public class Figure implements Drawable {
     private AbstractQuadrant q3;
     private AbstractQuadrant q4;
     int R;
+    double scale;
 
     public Figure(int R){
         this.R = R;
-        setQuadrants();
+        scale = this.R/R;
+        setQuadrants(R, scale);
     }
 
-    void setQuadrants(){
-        this.q1 = new Rectangle(R / 2, R, 1);
-        this.q2 = new Triangle(-R / 2, R / 2, 2);
+    void setQuadrants(int R, double scale){
+        this.q1 = new Rectangle(R / 2, R, 1, scale);
+        this.q2 = new Triangle(-R / 2, R / 2, 2, scale);
         this.q3 = new EmptyQuadrant(3);
-        this.q4 = new Circle(R / 2, 4);
+        this.q4 = new Circle(R / 2, 4, scale);
     }
 
     public boolean contains(Mark p){
@@ -57,8 +59,8 @@ public class Figure implements Drawable {
     }
 
     void setR(int R){
-        this.R = R;
-        setQuadrants();
+        scale = this.R/R;
+        setQuadrants(R, scale);
     }
 
     @Override

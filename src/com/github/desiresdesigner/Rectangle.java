@@ -8,7 +8,8 @@ import java.awt.*;
  */
 
 public class Rectangle extends AbstractQuadrant {
-    public Rectangle(double x, double y, int number){
+    public Rectangle(double x, double y, int number, double scale){
+        this.scale = scale;
         this.ox = x;
         this.oy = y;
         this.number = number;
@@ -32,8 +33,8 @@ public class Rectangle extends AbstractQuadrant {
 
   @Override
   public void draw(Graphics g, Mark center){
-      int[] xPoints = {(int)(center.getX()), (int)(center.getX() + ox), (int)(center.getX() + ox), (int)(center.getX())};
-      int[] yPoints = {(int)(center.getY()), (int)(center.getY()), (int)(center.getY() - oy), (int)(center.getY() - oy)};
+      int[] xPoints = {(int)(center.getX()), (int)(center.getX() + ox*scale), (int)(center.getX() + ox*scale), (int)(center.getX())};
+      int[] yPoints = {(int)(center.getY()), (int)(center.getY()), (int)(center.getY() - oy*scale), (int)(center.getY() - oy*scale)};
       g.fillPolygon(xPoints, yPoints, 4);
   }
 }

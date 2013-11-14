@@ -10,8 +10,9 @@ import java.awt.*;
 public class Circle extends AbstractQuadrant {
     private double r; // радиус окружности
 
-    public Circle(double r, int number){
+    public Circle(double r, int number, double scale){
         this.number = number;
+        this.scale = scale;
         if (this.number == 2 || this.number == 3)
             this.ox = -r;
         else
@@ -39,6 +40,6 @@ public class Circle extends AbstractQuadrant {
         } else if (this.number == 4){
             endAngle = -90;
         }
-        g.fillArc((int)(center.getX() - r), (int)(center.getY() - r), (int)(2*r), (int) (2*r), startAngle, endAngle);
+        g.fillArc((int)(center.getX() - r*scale), (int)(center.getY() - r*scale), (int)(2*r*scale), (int) (2*r*scale), startAngle, endAngle);
     }
 }

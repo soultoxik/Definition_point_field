@@ -20,7 +20,7 @@ class DrawingKeeper extends JFrame implements ActionListener {
     private JPanel menuPanel = new JPanel();
     private int canvasSize;
 
-    private JComboBox xComboBox;
+    private JComboBox<Integer> xComboBox;
     private JSpinner ySpinner;
     private JTextField RField;
     private JButton setDataButton;
@@ -65,14 +65,14 @@ class DrawingKeeper extends JFrame implements ActionListener {
     }
 
     private void prepareControlComponents(){
-        this.xComboBox = new JComboBox();
+        this.xComboBox = new JComboBox<Integer>();
 
-        String[] yCoord = new String[this.canvasSize];
+        String[] yCoordinate = new String[this.canvasSize];
         for (int i = 0; i < this.canvasSize; i++) {
             this.xComboBox.addItem (i - this.canvasSize / 2);
-            yCoord[i] = String.valueOf(i - this.canvasSize / 2);
+            yCoordinate[i] = String.valueOf(i - this.canvasSize / 2);
         }
-        SpinnerModel ySpinnerModel = new SpinnerListModel(yCoord);
+        SpinnerModel ySpinnerModel = new SpinnerListModel(yCoordinate);
         this.ySpinner = new JSpinner(ySpinnerModel);
 
         this.RField = new JTextField();
@@ -93,13 +93,11 @@ class DrawingKeeper extends JFrame implements ActionListener {
                 infoActLabel.setText("<html>Win!</html>");
             }
             catch (NumberFormatException e1) {
-                infoActLabel.setText("<html>Fail! R must be an Intager and more than 0.</html>");
+                infoActLabel.setText("<html>Fail! R must be an Integer and more than 0.</html>");
             }
-            int x = ((Integer)this.xComboBox.getSelectedItem()).intValue();
+            int x = (Integer) this.xComboBox.getSelectedItem();
             int y = Integer.parseInt((String)this.ySpinner.getValue());
-            infoXLabel.setText("x: " + String.valueOf(x));
-            infoYLabel.setText("y: " + String.valueOf(y));
-            this.figureDrawer.checkPoint(new Mark(x, y));
+            this.figureDrawer.checkPoint(new Mark(x*figure.scale, y*figure.scale));
         }
     }
 
@@ -138,7 +136,7 @@ class DrawingKeeper extends JFrame implements ActionListener {
 
     private void prepareInfoPanel(){
         this.prepareInfoComponents();
-        JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));//new JPanel();
+        JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Information"));
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.add(this.infoXLabel);

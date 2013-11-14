@@ -10,6 +10,7 @@ public abstract class AbstractQuadrant implements Drawable {
 
     protected double ox = 0;//пересечение с ОХ
     protected double oy = 0;//пересечение с ОY
+    protected double scale = 1;//масштаб
 
     public AbstractQuadrant(){
     }

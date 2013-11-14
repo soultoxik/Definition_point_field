@@ -6,17 +6,15 @@ package com.github.desiresdesigner;
  */
 
 class FrameContainer {
-    private final DrawingKeeper drawingKeeper;
-    private final Figure figure;
-    private int[] frameSize = {500, 300};
-    private int canvasRadious = 300;
 
     FrameContainer() {
-        figure = new Figure(120);
-        final FigureDrawer figureDrawer = new FigureDrawer(this.canvasRadious, figure);
-        this.drawingKeeper = new DrawingKeeper(this.canvasRadious, this.figure, figureDrawer);
-        this.drawingKeeper.setSize(this.frameSize[0], this.frameSize[1]);
-        this.drawingKeeper.addCanvas(figureDrawer);
-        this.drawingKeeper.setVisible(true);
+        Figure figure = new Figure(120);
+        int canvasRadius = 300;
+        final FigureDrawer figureDrawer = new FigureDrawer(canvasRadius, figure);
+        DrawingKeeper drawingKeeper = new DrawingKeeper(canvasRadius, figure, figureDrawer);
+        int[] frameSize = {500, 300};
+        drawingKeeper.setSize(frameSize[0], frameSize[1]);
+        drawingKeeper.addCanvas(figureDrawer);
+        drawingKeeper.setVisible(true);
     }
 }

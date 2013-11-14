@@ -17,14 +17,13 @@ class FigureDrawer extends Canvas implements MouseListener {
     private JLabel infoXLabel;
     private JLabel infoYLabel;
 
-    private Mark dotCoords;
+    private Mark dotCoordinate;
     private Color markColor;
     private int diameter;
 
-    private Mark lastDotCoords;
+    private Mark lastDotCoordinate;
     private Color lastMarkColor;
     private int lastDiameter;
-    private int lastR;
 
     public FigureDrawer(int size, Figure figure) {
         setBackground(Color.WHITE);
@@ -40,10 +39,10 @@ class FigureDrawer extends Canvas implements MouseListener {
     public void drawPoint(Mark p, Color color, int diameter){
         if (this.diameter == diameter)
             return;
-        lastDotCoords = dotCoords;
+        lastDotCoordinate = dotCoordinate;
         lastMarkColor = markColor;
         lastDiameter = this.diameter;
-        dotCoords = new Mark(this.getWidth()/2 + p.getX(), this.getHeight()/2 - p.getY());
+        dotCoordinate = new Mark(this.getWidth()/2 + p.getX(), this.getHeight()/2 - p.getY());
         markColor = color;
         this.diameter = diameter;
         repaint();
@@ -51,23 +50,18 @@ class FigureDrawer extends Canvas implements MouseListener {
 
     @Override
     public void update(Graphics g){
-        if (lastR != figure.R){
-            lastR = figure.R;
-            g.clearRect(0, 0, this.getWidth(), this.getHeight());
-            this.paint(g);
-        }
-        if (diameter != 10 & lastDotCoords != null){
+        if (diameter != 10 & lastDotCoordinate != null){
             if (lastMarkColor == Color.GREEN)
                 g.setColor(Color.black);
             else
                 g.setColor(Color.WHITE);
-            g.fillOval((int)this.dotCoords.getX() - lastDiameter/2, (int)this.dotCoords.getY() - lastDiameter/2, lastDiameter, lastDiameter);
+            g.fillOval((int)this.dotCoordinate.getX() - lastDiameter/2, (int)this.dotCoordinate.getY() - lastDiameter/2, lastDiameter, lastDiameter);
         } else if(diameter == 10) {
             g.clearRect(0, 0, this.getWidth(), this.getHeight());
             this.paint(g);
         }
         g.setColor(this.markColor);
-        g.fillOval((int)this.dotCoords.getX() - diameter/2, (int)this.dotCoords.getY() - diameter/2, diameter, diameter);
+        g.fillOval((int)this.dotCoordinate.getX() - diameter/2, (int)this.dotCoordinate.getY() - diameter/2, diameter, diameter);
     }
 
     @Override
@@ -111,12 +105,12 @@ class FigureDrawer extends Canvas implements MouseListener {
 
     public void checkPoint(Mark p){
         Color color = Color.RED;
-        if (this.figure.contains(p)){
+        if (this.figure.contains(new Mark((int)(p.getX()/figure.scale), (int)(p.getY()/figure.scale)))){
             color = Color.GREEN;
         }
-        infoXLabel.setText("x: " + String.valueOf(p.getX()));
-        infoYLabel.setText("y: " + String.valueOf(p.getY()));
         Thread thread = new Thread(new PointCreationAnimator(this, color, p, figure.R/7));
         thread.start();
+        infoXLabel.setText("x: " + String.valueOf((int)(p.getX()/figure.scale)));
+        infoYLabel.setText("y: " + String.valueOf((int)(p.getY()/figure.scale)));
     }
 }
