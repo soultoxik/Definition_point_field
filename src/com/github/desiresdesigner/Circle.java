@@ -40,6 +40,6 @@ public class Circle extends AbstractQuadrant {
         } else if (this.number == 4){
             endAngle = -90;
         }
-        g.fillArc((int)(center.getX() - r*scale), (int)(center.getY() - r*scale), (int)(2*r*scale), (int) (2*r*scale), startAngle, endAngle);
+        g.fillArc((int)(center.getX() - r), (int)(center.getY() - r), (int)(2*r), (int) (2*r), startAngle, endAngle);
     }
 }

@@ -30,4 +30,8 @@ public abstract class AbstractQuadrant implements Drawable {
     public double getOy(){
         return this.oy;
     }
+
+    public void setScale(double newScale){
+        this.scale = newScale;
+    }
 }

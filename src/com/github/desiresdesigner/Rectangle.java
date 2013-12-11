@@ -33,8 +33,8 @@ public class Rectangle extends AbstractQuadrant {
 
   @Override
   public void draw(Graphics g, Mark center){
-      int[] xPoints = {(int)(center.getX()), (int)(center.getX() + ox*scale), (int)(center.getX() + ox*scale), (int)(center.getX())};
-      int[] yPoints = {(int)(center.getY()), (int)(center.getY()), (int)(center.getY() - oy*scale), (int)(center.getY() - oy*scale)};
+      int[] xPoints = {(int)(center.getX()), (int)(center.getX() + ox), (int)(center.getX() + ox), (int)(center.getX())};
+      int[] yPoints = {(int)(center.getY()), (int)(center.getY()), (int)(center.getY() - oy), (int)(center.getY() - oy)};
       g.fillPolygon(xPoints, yPoints, 4);
   }
 }

@@ -105,7 +105,7 @@ class FigureDrawer extends Canvas implements MouseListener {
 
     public void checkPoint(Mark p){
         Color color = Color.RED;
-        if (this.figure.contains(new Mark((int)(p.getX()/figure.scale), (int)(p.getY()/figure.scale)))){
+        if (this.figure.contains(new Mark((int)(p.getX()), (int)(p.getY())))){
             color = Color.GREEN;
         }
         Thread thread = new Thread(new PointCreationAnimator(this, color, p, figure.R/7));
